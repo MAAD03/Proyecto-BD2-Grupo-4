@@ -1,0 +1,23 @@
+Esto se realiza dentro del sql plus como sysdba
+
+creamos el usuario,
+CREATE USER C##proyecto_bd2 IDENTIFIED BY pro123;
+
+le asignamos el espacio
+
+ALTER USER C##proyecto_bd2 DEFAULT TABLESPACE users QUOTA UNLIMITED ON users;
+
+permisos
+
+
+
+ GRANT CONNECT,RESOURCE TO C##proyecto_bd2;
+
+GRANT SELECT ANY TABLE, INSERT ANY TABLE, UPDATE ANY TABLE, DELETE ANY TABLE TO C##proyecto_bd2;
+
+GRANT DBA TO C##proyecto_bd2;
+
+GRANT CREATE PROCEDURE, CREATE SEQUENCE TO C##proyecto_bd2;
+
+
+Basado en este usuario hacemos la conexion en sqldeveloper y configuramos el backend para conectarnos
