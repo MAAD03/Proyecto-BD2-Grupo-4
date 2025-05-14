@@ -1,10 +1,10 @@
-package com.bd2_project.proyecto_bd2;
+package com.bd2.proyecto;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProyectoBd2ApplicationTests {
+class ProyectoApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,13 +1,13 @@
-package com.bd2_project.proyecto_bd2;
+package com.bd2.proyecto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProyectoBd2Application {
+public class ProyectoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProyectoBd2Application.class, args);
+		SpringApplication.run(ProyectoApplication.class, args);
 	}
 
 }
