@@ -39,7 +39,7 @@ export class LoginComponent {
   }
 
   return this.htpp.post(
-    "http://localhost:8080/api/auth/login",
+    "http://localhost:8080/api/login",
     this.usuario, httpOptions);
   }
 }
