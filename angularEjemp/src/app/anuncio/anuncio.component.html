@@ -1,0 +1,11 @@
+<div>
+    <ul *ngFor="let anuncio of anuncios">
+        <p><b>Id Anuncio: </b>{{anuncio.idanuncio}}</p>
+        <p><b>Texto: </b>{{anuncio.texto}}</p>
+        <p><b>Imagen: </b>{{anuncio.imagen}}</p>
+        <p><b>Fecha Inicio: </b>{{anuncio.fecha_inicio | date:'yyyy-MM-dd'+' | '+'HH:mm:ss'}}</p>
+        <p><b>Fecha Fin: </b>{{anuncio.fecha_fin | date:'yyyy-MM-dd'+' | '+'HH:mm:ss'}}</p>
+        <br>
+        <br>
+    </ul>
+</div>
