@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bd2.proyecto.LoginRequest;
@@ -28,6 +29,15 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("credenciales Invalidas.");
         }
 
+    }
+
+    @PostMapping("/execute")
+    public Object ejecutarQuery(
+            @RequestParam String username,
+            @RequestParam String password,
+            @RequestBody String query
+    ) {
+        return loginService.ejecutarQuery(username, password, query);
     }
 
 }
