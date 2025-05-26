@@ -13,7 +13,8 @@ import jakarta.servlet.http.HttpSession;
 @Service
 public class ExecuteScriptService {
 
-    public Object executeScript(String sqlScript, String username, String password, String currentDatabase, HttpSession session) {
+    public Object executeScript(String sqlScript, String username, String password, String currentDatabase,
+            HttpSession session) {
         try {
             DriverManagerDataSource dataSource = new DriverManagerDataSource();
             dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
@@ -34,21 +35,23 @@ public class ExecuteScriptService {
                         session.setAttribute("currentDatabase", newDatabase);
                         dynamicJdbcTemplate.execute(command.trim());
                         results.add(Map.of("message", "Base de datos cambiada a " + newDatabase));
-                    } else if (trimmedCommand.startsWith("create ") || 
-                              trimmedCommand.startsWith("grant ") || 
-                              trimmedCommand.startsWith("flush ") || 
-                              trimmedCommand.startsWith("alter ") || 
-                              trimmedCommand.startsWith("drop ")) {
+                    } else if (trimmedCommand.startsWith("create ") ||
+                            trimmedCommand.startsWith("grant ") ||
+                            trimmedCommand.startsWith("flush ") ||
+                            trimmedCommand.startsWith("alter ") ||
+                            trimmedCommand.startsWith("drop ")) {
                         dynamicJdbcTemplate.execute(command.trim());
                         results.add(Map.of("message", "Script ejecutado con éxito"));
                     } else {
                         try {
-                            List<Map<String, Object>> queryResults = dynamicJdbcTemplate.queryForList(command.trim());
-                            if (!queryResults.isEmpty()) {
+                            if (trimmedCommand.startsWith("select") || trimmedCommand.startsWith("show")
+                                    || trimmedCommand.startsWith("desc")) {
+                                List<Map<String, Object>> queryResults = dynamicJdbcTemplate
+                                        .queryForList(command.trim());
                                 results.addAll(queryResults);
                             } else {
-                                dynamicJdbcTemplate.execute(command.trim());
-                                results.add(Map.of("message", "Script ejecutado con éxito"));
+                                int updateCount = dynamicJdbcTemplate.update(command.trim());
+                                results.add(Map.of("message", "Filas afectadas: " + updateCount));
                             }
                         } catch (Exception e) {
                             return "Error al ejecutar el script: " + e.getMessage();
