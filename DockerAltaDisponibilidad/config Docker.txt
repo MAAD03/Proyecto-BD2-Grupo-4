@@ -1,0 +1,41 @@
+docker-compose up -d
+
+
+--Entramos al nodo1
+docker exec -it node1 mysqlsh
+\connect root@node1
+# contraseña: root
+
+dba.configureInstance('root@node1:3306')
+dba.configureInstance('root@node2:3306')
+dba.configureInstance('root@node3:3306')
+
+cluster = dba.createCluster('myCluster')
+cluster.addInstance('root@node2:3306')
+cluster.addInstance('root@node3:3306')
+
+cluster.status()
+
+\exit
+
+-- Nos metemos al mysql Router
+docker exec -it --user root mysql-router bash
+mysqlrouter --bootstrap root@node1:3306 --user=mysqlrouter
+exit
+
+--reiniciamos el router
+docker restart mysql-router
+
+--entrar mysql dentro del server
+mysql -u root -p 
+root
+
+-- NUNCA USAR DOCKER COMPOSE DOWN, (SOLO START O STOP)
+
+
+
+--Recuperar el cluster una vez se detuvo
+
+docker exec -it node1 mysqlsh
+\connect root@node1
+dba.rebootClusterFromCompleteOutage()

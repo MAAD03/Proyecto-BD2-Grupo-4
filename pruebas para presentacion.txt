@@ -1,7 +1,11 @@
-CREATE USER 'user1'@'localhost' IDENTIFIED BY 'clave123';
+CREATE USER 'user1'@'%' IDENTIFIED BY 'clave123';
 
 
 GRANT ALL PRIVILEGES ON bd2Proyecto.* TO 'user1'@'localhost' WITH GRANT OPTION;
+
+
+    SELECT User, Host FROM mysql.user;
+
 
 
 CREATE TABLE usuario (
@@ -12,8 +16,8 @@ CREATE TABLE usuario (
 );
 
 
-INSERT INTO usuario (nombre, correo, edad)
-VALUES ('Fernando', 'fernando@mail.com', 23);
+    INSERT INTO usuario (nombre, correo, edad)
+    VALUES ('Fernando', 'fernando@mail.com', 23);
 
 INSERT INTO usuario (nombre, correo, edad)
 VALUES ('MAynor', 'Maynor@mail.com', 22);

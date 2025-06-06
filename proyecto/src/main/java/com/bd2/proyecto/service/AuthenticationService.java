@@ -11,7 +11,7 @@ public class AuthenticationService {
         try {
             DriverManagerDataSource dataSource = new DriverManagerDataSource();
             dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-            dataSource.setUrl("jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=UTC");
+            dataSource.setUrl("jdbc:mysql://localhost:6446/?useSSL=false&serverTimezone=UTC");
             dataSource.setUsername(username);
             dataSource.setPassword(password);
 

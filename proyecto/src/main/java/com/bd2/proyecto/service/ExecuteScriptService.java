@@ -18,7 +18,7 @@ public class ExecuteScriptService {
         try {
             DriverManagerDataSource dataSource = new DriverManagerDataSource();
             dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-            dataSource.setUrl("jdbc:mysql://localhost:3306/" + currentDatabase + "?useSSL=false&serverTimezone=UTC");
+            dataSource.setUrl("jdbc:mysql://localhost:6446/" + currentDatabase + "?useSSL=false&serverTimezone=UTC");
             dataSource.setUsername(username);
             dataSource.setPassword(password);
 

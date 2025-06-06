@@ -28,7 +28,7 @@ public class DataBaseController {
         if (authenticationService.login(username, password)) {
             session.setAttribute("username", username);
             session.setAttribute("password", password);
-            session.setAttribute("currentDatabase", "bd_fernando"); // Base de datos inicial
+            session.setAttribute("currentDatabase", "bd2proyecto"); // Base de datos inicial
             return "Login exitoso";
         } else {
             return "Credenciales inválidas";
